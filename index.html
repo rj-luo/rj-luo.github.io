@@ -27,11 +27,23 @@
       <a href="./about.html">more</a>
     </div>
     <script>
-      console.log(
-        "Love you for",
-        (Date.now() - new Date("2023-07-07").getTime()) / 1000 / 60 / 60 / 24,
-        "days"
-      );
+      console.log(getTimeDifference("2023-07-07"));
+
+      function getTimeDifference(targetDate) {
+        const MS_PER_SECOND = 1000;
+        const MS_PER_MINUTE = MS_PER_SECOND * 60;
+        const MS_PER_HOUR = MS_PER_MINUTE * 60;
+        const MS_PER_DAY = MS_PER_HOUR * 24;
+
+        const t = Date.now() - new Date(targetDate).getTime();
+
+        const d = Math.floor(t / MS_PER_DAY);
+        const h = Math.floor((t % MS_PER_DAY) / MS_PER_HOUR);
+        const m = Math.floor((t % MS_PER_HOUR) / MS_PER_MINUTE);
+        const s = Math.floor((t % MS_PER_MINUTE) / MS_PER_SECOND);
+
+        return `${d}d, ${h}h, ${m}m, ${s}s`;
+      }
     </script>
   </body>
 </html>
